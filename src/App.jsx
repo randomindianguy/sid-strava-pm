@@ -91,16 +91,38 @@ function HookPill({ label, category, dim }) {
 }
 
 function CurrentCard() {
+  const [expanded, setExpanded] = useState(false);
   return (
-    <div style={{ background: BG_CARD, borderRadius: "12px", padding: "24px", border: `1px solid ${BORDER_SUBTLE}`, height: "100%",  }}>
+    <div style={{ background: BG_CARD, borderRadius: "12px", padding: "24px", border: `1px solid ${BORDER_SUBTLE}`, height: "100%" }}>
       <div style={{ fontSize: "20px", fontWeight: 600, marginBottom: "4px" }}>Workout A</div>
       <div style={{ fontSize: "13px", color: TEXT_MUTED, marginBottom: "20px" }}>Logged with Hevy</div>
-      <div style={{ fontSize: "13px", color: TEXT_SECONDARY, lineHeight: 1.8, marginBottom: "16px", maxHeight: "120px", overflow: "hidden", position: "relative" }}>
-        <div>Pull Up (Assisted)</div><div style={{ color: TEXT_MUTED }}>Set 1: 0 lbs x 2</div>
-        <div style={{ marginTop: "8px" }}>Single Arm Cable Row</div><div style={{ color: TEXT_MUTED }}>Set 1: 93 lbs x 8</div>
-        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "48px", background: `linear-gradient(transparent, ${BG_CARD})` }} />
+      <div style={{ fontSize: "13px", color: TEXT_SECONDARY, lineHeight: 1.8, marginBottom: "16px", maxHeight: expanded ? "none" : "120px", overflow: "hidden", position: "relative", transition: "max-height 0.4s ease" }}>
+        <div>Pull Up (Assisted)</div>
+        <div style={{ color: TEXT_MUTED }}>Set 1: 0 lbs x 2</div>
+        <div style={{ marginTop: "8px" }}>Single Arm Cable Row</div>
+        <div style={{ color: TEXT_MUTED }}>Set 1: 93 lbs x 8</div>
+        <div style={{ color: TEXT_MUTED }}>Set 2: 93 lbs x 8</div>
+        <div style={{ color: TEXT_MUTED }}>Set 3: 93 lbs x 8</div>
+        <div style={{ color: TEXT_MUTED }}>Set 4: 93 lbs x 8</div>
+        <div style={{ color: TEXT_MUTED }}>Set 5: 93 lbs x 8</div>
+        <div style={{ color: TEXT_MUTED }}>Set 6: 93 lbs x 6</div>
+        <div style={{ marginTop: "8px" }}>Incline Bench Press (Dumbbell)</div>
+        <div style={{ color: TEXT_MUTED }}>Set 1: 25 lbs x 8</div>
+        <div style={{ color: TEXT_MUTED }}>Set 2: 27.5 lbs x 8</div>
+        <div style={{ color: TEXT_MUTED }}>Set 3: 27.5 lbs x 8</div>
+        <div style={{ marginTop: "8px" }}>Preacher Curl (Barbell)</div>
+        <div style={{ color: TEXT_MUTED }}>Set 1: 30 lbs x 8</div>
+        <div style={{ color: TEXT_MUTED }}>Set 2: 40 lbs x 10</div>
+        <div style={{ color: TEXT_MUTED }}>Set 3: 40 lbs x 8</div>
+        <div style={{ marginTop: "8px" }}>Bicep Curl (Dumbbell)</div>
+        <div style={{ color: TEXT_MUTED }}>Set 1: 15 lbs x 10</div>
+        <div style={{ color: TEXT_MUTED }}>Set 2: 15 lbs x 12</div>
+        <div style={{ color: TEXT_MUTED }}>Set 3: 15 lbs x 12</div>
+        <div style={{ marginTop: "8px" }}>Stair Machine (Steps)</div>
+        <div style={{ color: TEXT_MUTED }}>Set 1: 0 steps - 5min 0s</div>
+        {!expanded && <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "48px", background: `linear-gradient(transparent, ${BG_CARD})` }} />}
       </div>
-      <div style={{ fontSize: "13px", color: STRAVA_ORANGE, marginBottom: "20px" }}>Read more...</div>
+      <div onClick={() => setExpanded(!expanded)} style={{ fontSize: "13px", color: STRAVA_ORANGE, marginBottom: "20px", cursor: "pointer" }}>{expanded ? "Show less" : "Read more..."}</div>
       <div style={{ display: "flex", alignItems: "center", gap: "8px", padding: "10px 14px", background: "rgba(252,76,2,0.08)", borderRadius: "8px", marginBottom: "20px" }}>
         <span style={{ fontSize: "16px" }}>🔥</span><span style={{ fontSize: "13px", color: TEXT_SECONDARY }}>You reached a 3 week streak!</span>
       </div>
